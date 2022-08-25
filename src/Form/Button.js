@@ -1,7 +1,14 @@
-import React from 'react';
 
-const Button = () => {
-  return <button>Enviar</button>;
-};
 
-export default Button;
+import React from 'react'
+
+function Button(props) {
+
+  console.log(props)
+  
+  return (
+    <button >Clique </button>
+  )
+}
+
+export default Button
