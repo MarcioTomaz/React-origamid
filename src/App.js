@@ -1,32 +1,27 @@
 
 import React from "react";
-import Form from "./Form/Form";
-
-// const Titulo = (props) => {
-//   return <h1 style={{color: props.cor}}>{props.texto}</h1>;
-// };
-
-const Titulo = ({cor, texto, children}) => {// desestruturado
-  return <h1 style={{color: cor}}>{texto}, { children }</h1>;
-};
-
-
+import Header from "./Header";
+import Home from "./Home";
+import Produtos from "./Produtos";
 
 const App = () => {
-  return (
-    <section>  
-      <Titulo cor="red" texto="Meu titulo 1" >
-        Isso é o children
-        <p>Teste</p>
-      </Titulo> { /* ao abrir e fechar ele irá ficar com a propriedade children */}
-      <Titulo cor="blue "texto="Meu titulo 2" />
-      <Titulo texto="Meu titulo 3" />
 
-      <Form>
+  const { pathname } = window.location;
+  console.log(pathname)
 
-      </Form>
-      
-    </section>
+  let Pagina;
+
+  if(pathname === '/produtos'){
+    Pagina = Produtos;
+  }else{
+    Pagina = Home
+  }
+
+  return (  
+    <>
+      <Header/>      
+      <Pagina/>
+    </>
   )
 };
 
