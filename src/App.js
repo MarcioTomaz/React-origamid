@@ -1,23 +1,26 @@
 
+import React from "react";
+import Footer from "./Footer";
+import Header from "./Header";
+import Form from "./Form/Form";
 
 const App = () => {
   
-  function handleClick(event){
-    console.log(event.target);
-  }
+  const Teste = () => {
 
-  function handleScroll(event){
-    console.log(event.target);
+    const active = false;
+
+    if (active){
+      return <p>Teste</p>;
+    }
   }
-  window.addEventListener('scroll', handleScroll);
 
   return (
     <>  
-      <div style={{height: '200vh'}}>
-        <button onClick={handleClick} onMouseMove={handleClick}>Clique</button>
-
-        <button onClick={(event) => console.log(event.target.innerText)}>Clique 2</button>
-      </div>
+      <Teste/>
+      <Header />
+      <Form />
+      <Footer />
     </>
   )
 }
