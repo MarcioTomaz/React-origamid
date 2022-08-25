@@ -1,43 +1,50 @@
+
+
+
 const App = () => {
+  // Mostre os dados da aplicação, como aprensetado no vídeo
+  // Não utilize CSS externo, use o style para mudar as cores
+  // Se a situação estiver ativa pinte de verde, inativa vermelho
+  // Se o gasto for maior que 10000 mostre uma mensagem
+  const luana = {
+    cliente: 'Luana',
+    idade: 27,
+    compras: [
+      { nome: 'Notebook', preco: 'R$ 2500' },
+      { nome: 'Geladeira', preco: 'R$ 3000' },
+      { nome: 'Smartphone', preco: 'R$ 1500' },
+    ],
+    ativa: true,
+  };
 
-  const nome = 'Marzio';
-  const number = Math.random();
-  const ativo = false;
+  const mario = {
+    cliente: 'Mario',
+    idade: 31,
+    compras: [
+      { nome: 'Notebook', preco: 'R$ 2500' },
+      { nome: 'Geladeira', preco: 'R$ 3000' },
+      { nome: 'Smartphone', preco: 'R$ 1500' },
+      { nome: 'Guitarra', preco: 'R$ 3500' },
+    ],
+    ativa: false,
+  };
 
-  function mostrarNome(sobrenome){
-      return 'Marzio ' + sobrenome; 
-  }
+    const dados = mario;
 
-  const carro = {
-    marca: 'Ford', 
-    portas: '4'
-  }
+    // pegando primeiro os preços do objeto e retirando o 'R$ ' e convertendo para numero com o 
+    // Number()
+    const total = dados.compras.map( item => Number(item.preco.replace('R$ ', '')))
+    .reduce((a,b) => a + b);
+    //reduce ele recebe o valor anterior e o atual, e dps a expressao 
 
-  const estiloP = {
-    color: "blue"
-  }
+    return <div>
+      <p>Nome: {dados.cliente}</p>
+      <p>Idade: {dados.idade}</p>
+      <p>Situação: <span style={{color: dados.ativa? 'green':'red'}}>{dados.ativa ? 'Ativa' : 'Inativa'}</span></p>
+      <p>Total gasto: R$ {total}</p>
+      <p>{total > 10000 ? "Você está fora do limite" : ''}</p>
 
-  return (
-    <>
-      <a 
-        href="https://pokeapi.co/" 
-        title="pokemon api"
-        className="ativo">Meu app
-      </a>
-
-      <label htmlFor="nome">
-        <input type="text" id="nome" />
-      </label>
-
-      <p style={estiloP}>{mostrarNome('Tomaz')}</p>
-
-      <p>{carro.marca}</p>
-      
-      <p>{number * 1000 / 5 - 10 }</p>
-
-      <p className={ ativo? 'ativo': 'inativo'}>condicional</p>
-    </>
-  );
+    </div>;  
 }
 
 export default App;
