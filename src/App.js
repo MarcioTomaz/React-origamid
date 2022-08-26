@@ -5,37 +5,42 @@ import Modal from "./Modal";
 
 const App = () => {
 
-  // Os Hooks são funções especiais do React que permitem controlarmos o estado e o ciclo de vida de componentes funcionais. Isso antes só era possível com classes.
+  const [ contar, setContar]= React.useState(1);
+  const [items1, setItems1] = React.useState('Item 1');
 
-  // const ativoHook = React.useState(false);
-  // const ativoValor = ativoHook[0];
-  // const atualizaValor = ativoHook[1];
+  // const [modal, setModal] = React.useState(() => {//callback pegando do localStorage
+  //   const ativo = window.localStorage.getItem('ativo');
+  //   return ativo;
+  // });
 
-  const [ ativo, setAtivo] = React.useState(false);// desestruturando
-  const [dados, setDados] = React.useState({nome: 'Marzio', idade: '23'});
+  const [modal, setModal] = React.useState(true);
 
-  console.log(ativo);
-
+  const [items, setItems] = React.useState('Teste');
+  
   function handleClick(){
-      setAtivo(!ativo);
-      setDados({...dados, faculdade: 'Possui faculdade'});// maneira de adicionar atributos no obj sem precisar setar os dados anteriores colocando  '...dados, '
+    setItems('outros');
   }
 
-  const [modal, setModal] = React.useState(false);
+  function contadorClick(){
+    setContar((contar) => {
+      return contar +1;
+    })
+    
+    setItems((items) => [...items, 'Item ' + (contar + 1)])
+  }
   
   return (  
     <>
-      <div>
-        <p>{dados.nome}</p>
-        <p>{dados.idade}</p>
-        <p>{dados.faculdade}</p>
-        <button onClick={handleClick} className="">{ativo? 'Ativo' : 'Inativo'}</button>   
-
-        <div>{modal ? 'Modal aberta': 'Modal fechada'}</div>
-        <Modal modal={modal} setModal={setModal}/>
-        <ButtonModal setModal={setModal}/> 
-   
+      <div>   
+        <p>{items}</p>
+        <button onClick={handleClick}>CLicar</button>
       </div>
+      <Modal modal={modal} setModal={setModal} />
+      <ButtonModal setModal={setModal} />
+
+      {items1.localeCompare( item => <li key={items}>{item}</li>)}
+      <button onClick={contadorClick}>{contar}</button>
+
     </>
   )
 };
