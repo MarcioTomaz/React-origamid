@@ -1,26 +1,41 @@
 
 import React from "react";
-import Header from "./Header";
-import Home from "./Home";
-import Produtos from "./Produtos";
+import ButtonModal from "./ButtonModal";
+import Modal from "./Modal";
 
 const App = () => {
 
-  const { pathname } = window.location;
-  console.log(pathname)
+  // Os Hooks são funções especiais do React que permitem controlarmos o estado e o ciclo de vida de componentes funcionais. Isso antes só era possível com classes.
 
-  let Pagina;
+  // const ativoHook = React.useState(false);
+  // const ativoValor = ativoHook[0];
+  // const atualizaValor = ativoHook[1];
 
-  if(pathname === '/produtos'){
-    Pagina = Produtos;
-  }else{
-    Pagina = Home
+  const [ ativo, setAtivo] = React.useState(false);// desestruturando
+  const [dados, setDados] = React.useState({nome: 'Marzio', idade: '23'});
+
+  console.log(ativo);
+
+  function handleClick(){
+      setAtivo(!ativo);
+      setDados({...dados, faculdade: 'Possui faculdade'});// maneira de adicionar atributos no obj sem precisar setar os dados anteriores colocando  '...dados, '
   }
 
+  const [modal, setModal] = React.useState(false);
+  
   return (  
     <>
-      <Header/>      
-      <Pagina/>
+      <div>
+        <p>{dados.nome}</p>
+        <p>{dados.idade}</p>
+        <p>{dados.faculdade}</p>
+        <button onClick={handleClick} className="">{ativo? 'Ativo' : 'Inativo'}</button>   
+
+        <div>{modal ? 'Modal aberta': 'Modal fechada'}</div>
+        <Modal modal={modal} setModal={setModal}/>
+        <ButtonModal setModal={setModal}/> 
+   
+      </div>
     </>
   )
 };
