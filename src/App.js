@@ -1,6 +1,7 @@
 
 import React from "react";
 import Input from "./Form/Input";
+import Select from "./Form/Select";
 
 // Otimize o código do slide anterior
 // Utilizando a array abaixo para mostrar
@@ -38,6 +39,8 @@ const App = () => {
 
   const[nome, setNome] = React.useState('');
   const[email, setEmail] = React.useState('');
+
+  const[produtoC, setProdutoC] = React.useState('');
 
   return(
     <form>
@@ -163,11 +166,19 @@ const App = () => {
     <hr />
 
     <h4>Componentes form</h4>
+
+    <h5>Componente Input</h5>
       <Input id="nome" label="Nome" value={nome} setValue={setNome} required/>
       <Input id="email" label="Email" value={email} setValue={setEmail} />      
 
       <button>Enviar</button>
 
+      <hr />
+
+      <h5>Componente Select</h5>
+      <Select options={['Pc Gamer', 'Tablet Verde']} value={produtoC} setValue={setProdutoC}/>
+
+      <hr />
    </form>
   ) 
 }
