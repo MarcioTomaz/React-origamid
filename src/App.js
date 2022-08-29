@@ -1,6 +1,12 @@
 
 import React from "react";
 
+// Otimize o código do slide anterior
+// Utilizando a array abaixo para mostrar
+// cada checkbox na tela.
+
+const coresArray = ['azul2', 'green', 'roxo2', 'laranja2', 'verde2', 'vermelho2', 'cinza2'];
+
 
 const App = () => {
 
@@ -44,7 +50,6 @@ const App = () => {
       <br/>
       <hr />
       <h4>Radio</h4>
-
       {
         produto
       }
@@ -133,7 +138,25 @@ const App = () => {
         Roxo
       </label>
 
-    </form>
+
+    <hr />
+
+    <h4>Checkbox otimizado
+    </h4>    
+
+    {coresArray.map((cor, index) => 
+    <label key={index} style={{textTransform: 'capitalize'}}>
+      <input
+          type="checkbox"
+          value={cor}
+          checked={handleCheckedCores(cor)}
+          onChange={handleChangeCores}
+        />
+        {cor}
+      </label>)
+    } 
+
+   </form>
   ) 
 }
 
