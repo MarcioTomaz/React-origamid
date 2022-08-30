@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Checkbox = ({options, value, setValue, index}) => {
+const Checkbox = ({options, value, setValue}) => {
 
   function handleChange({target}){
     if(target.checked){
@@ -14,7 +14,7 @@ const Checkbox = ({options, value, setValue, index}) => {
   return (
     <>
     {options.map((option) => 
-      <label key={index}>
+      <label key={option}>
         <input 
           type="checkbox" 
           value={option} 

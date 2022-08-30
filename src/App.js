@@ -2,6 +2,7 @@
 import React from "react";
 import Checkbox from "./Form/Checkbox";
 import Input from "./Form/Input";
+import Input2 from "./Form/Input2";
 import Radio from "./Form/Radio";
 import Select from "./Form/Select";
 
@@ -28,6 +29,16 @@ const App = () => {
 
   const[linguagens, setLinguagens] = React.useState([]);
 
+  const [cep, setCep] = React.useState('');
+
+  const[nome, setNome] = React.useState('');
+
+  const[email, setEmail] = React.useState('');
+
+  const[produtoC, setProdutoC] = React.useState('');
+
+  const[erro, setErro] = React.useState(null);
+
   function handleChangeRadio({target}){
     setProduto(target.value);
   }
@@ -45,13 +56,44 @@ const App = () => {
     return cores.includes(cor);
   }
 
-  const[nome, setNome] = React.useState('');
-  const[email, setEmail] = React.useState('');
 
-  const[produtoC, setProdutoC] = React.useState('');
+  function validateCep(value){
+    if( value.length === 0){
+      setErro('Preencha um valor');
+      return false;
+
+    } else if(!/^\d{5}-?\d{3}$/.test(value)){
+      setErro("Preencha um CEP válido");
+      return false;
+      
+    }else{
+      setErro(null);
+      return true;      
+    }    
+  }
+
+  function handleBlur({target}){
+    console.log(validateCep(target.value));    
+  }
+
+  function handleChange({target}){
+    if(erro){
+      validateCep(target.value)
+      setCep(target.value)
+    }    
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (validateCep(cep)) {
+      console.log('Enviar');
+    } else {
+      console.log('Não enviar');
+    }
+  }
 
   return(
-    <form>
+    <form onSubmit={handleSubmit}>
       <h4>Select</h4>
       <select value={select} onChange={({target}) => setSelect(target.value) } id="produtos">
         <option disabled value="">Selecione</option>
@@ -199,6 +241,37 @@ const App = () => {
 
       <h5>Componente checkbox</h5>
       <Checkbox options={['Javascript', 'Java', 'php']} value={linguagens} setValue={setLinguagens}/>
+
+      <hr />
+
+      <h5>Validação</h5>
+
+      <Input 
+        label="CEP" 
+        id="cep" 
+        type="text" 
+        value={cep} 
+        setValue={setCep}
+        placeholder="00000-000"
+        onBlur={handleBlur}
+      />
+
+      <hr />
+      <h6>Input 2</h6>
+
+    <Input2 
+      label="CEP" 
+      id="cep" 
+      type="text" 
+      value={cep} 
+      onChange={handleChange}
+      placeholder="00000-000"
+      onBlur={handleBlur}
+    />
+      {erro && <p>{erro}</p>}
+
+      <button>Enviar</button>
+
    </form>
   ) 
 }

@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-const Input = ({label, id, setValue,onChange, value, ...props}) => {//desestruturando o label, e o props
+const Input2 = ({label, id, setValue,onChange, value, ...props}) => {//desestruturando o label, e o props
   return (
     <>
       <label key={id}>
@@ -10,7 +10,7 @@ const Input = ({label, id, setValue,onChange, value, ...props}) => {//desestrutu
           type="text" 
           id={id} 
           name={id}
-          onChange={ ({ target }) => setValue(target.value)}
+          onChange={ onChange}
           {...props}
           />
           {value}
@@ -19,4 +19,4 @@ const Input = ({label, id, setValue,onChange, value, ...props}) => {//desestrutu
   )
 }
 
-export default Input
+export default Input2
