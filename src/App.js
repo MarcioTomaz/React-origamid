@@ -40,10 +40,55 @@ const perguntas = [
 
 const App = () => {
 
+  const [respostas, setRespostas] = React.useState({
+    p1: '',
+    p2: '',
+    p3: '',
+    p4: '',
+  })
+
+  const [resultado, setResultado] = React.useState(null);
+
+  const [slide, setSlide] = React.useState(0);
+
+  function handleChange({target}){
+    // console.log(target);
+    setRespostas({...respostas, [target.id]: target.value})
+  }
+
+  function resultadoFinal(){
+
+    console.log('final')
+    const corretas = perguntas.filter(
+      ({ id, resposta }) => respostas[id] === resposta,
+    );     
+    setResultado(`Você acertou: ${corretas.length} de ${perguntas.length}`)
+  }
+  
+  function handleClick(){
+    if(slide < perguntas.length - 1){
+     setSlide(slide + 1);
+    }else{
+      setSlide(slide + 1);
+      resultadoFinal();
+    }
+  }
+
   return(
-    <form>
-      <Radio />
-      <button>Próximo</button>
+    <form onSubmit={(event) => event.preventDefault()}>
+      {perguntas.map((pergunta, index) =>
+        <Radio
+          active={slide === index} 
+          key={pergunta.id} 
+          onChange={handleChange}
+          value={respostas[pergunta.id]}
+          {...pergunta}/>
+      )}  
+      {resultado ? (
+        <p>{resultado}</p>
+      ) : (
+        <button onClick={handleClick}>Próxima</button>
+      )}
     </form>
   ) 
 }
