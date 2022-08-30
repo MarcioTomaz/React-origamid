@@ -1,5 +1,6 @@
 
 import React from "react";
+import Checkbox from "./Form/Checkbox";
 import Input from "./Form/Input";
 import Radio from "./Form/Radio";
 import Select from "./Form/Select";
@@ -24,6 +25,8 @@ const App = () => {
   const [cor, setCor] = React.useState('Azul');
 
   const [fruta, setfruta] = React.useState('');
+
+  const[linguagens, setLinguagens] = React.useState([]);
 
   function handleChangeRadio({target}){
     setProduto(target.value);
@@ -192,6 +195,10 @@ const App = () => {
       <h6>Frutas</h6>
       <Radio options={['Maça', 'Pera', 'Melancia']} value={fruta} setValue={setfruta} />
 
+      <hr />
+
+      <h5>Componente checkbox</h5>
+      <Checkbox options={['Javascript', 'Java', 'php']} value={linguagens} setValue={setLinguagens}/>
    </form>
   ) 
 }
