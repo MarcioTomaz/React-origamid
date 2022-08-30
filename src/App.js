@@ -1,6 +1,7 @@
 
 import React from "react";
 import Input from "./Form/Input";
+import Radio from "./Form/Radio";
 import Select from "./Form/Select";
 
 // Otimize o código do slide anterior
@@ -19,6 +20,10 @@ const App = () => {
   const [select, setSelect] = React.useState('');
 
   const [produto, setProduto] = React.useState('');
+
+  const [cor, setCor] = React.useState('Azul');
+
+  const [fruta, setfruta] = React.useState('');
 
   function handleChangeRadio({target}){
     setProduto(target.value);
@@ -179,6 +184,14 @@ const App = () => {
       <Select options={['Pc Gamer', 'Tablet Verde']} value={produtoC} setValue={setProdutoC}/>
 
       <hr />
+
+      <h5>Componente Radio</h5>
+      <h6>Cores</h6>
+      <Radio options={['Azul', 'Vermelho']} value={cor} setValue={setCor} />
+
+      <h6>Frutas</h6>
+      <Radio options={['Maça', 'Pera', 'Melancia']} value={fruta} setValue={setfruta} />
+
    </form>
   ) 
 }
