@@ -1,0 +1,29 @@
+.titulo,
+.preco {
+  color: #43c;
+}
+
+/* usar o padrao camelCase */
+.precoTotal {
+  font-weight: bold;
+}
+
+.comprar {
+  transform: rotate(90deg) translateY(-100px);
+}
+
+/* funcionalidades extras */
+
+/* no local de composes use a vírgula .titulo, .preco {} */
+.preco {
+  composes: titulo;
+  font-weight: bold;
+}
+
+/* no local de variáveis utilize variáveis de CSS com o var() */
+@value width: 900px;
+
+/* crie um css global utilizando o IMPORT puro para quando precisar de estilos globais */
+:global .container {
+  max-width: width;
+}
