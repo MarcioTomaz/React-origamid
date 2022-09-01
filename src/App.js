@@ -5,6 +5,7 @@ import Header from "./Header";
 import Home from "./Home";
 import Login from "./Login";
 import NaoEncontrado from "./NaoEncontrado";
+import Produto from "./Produto";
 import Sobre from "./Sobre";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/" element={<Home />}/>
         <Route path="sobre" element={<Sobre />}/>
         <Route path="login" element={<Login />}/>
+        <Route path="produto/:id" element={<Produto />}/>
 
         <Route path="*" element={<NaoEncontrado />}/>
         {/* o asterisco significa q qqr pag q nao for as de cima sera essa route */}
